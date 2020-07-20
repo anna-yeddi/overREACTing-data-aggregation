@@ -6,23 +6,38 @@ function MonthTable(props) {
 
   return (
     <div>
-      <h2>Month Table</h2>
       <table>
-        <tr>
-          <th>Month</th>
-          <th>Amount</th>
-        </tr>
-        {props.list.map((item) => (
+        <caption>
+          <h2>Month Table</h2>
+        </caption>
+        <thead>
           <tr>
-            <td>{item.month}</td>
-            <td>{item.amount}</td>
+            <th scope="col">Month</th>
+            <th scope="col">Amount</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {props.list.map((item, i) => (
+            <tr key={i}>
+              <td>{item.month}</td>
+              <td>{item.amount}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   )
 }
 
-MonthTable.propTypes = {}
+MonthTable.propTypes = {
+  props: PropTypes.objectOf({
+    list: PropTypes.arrayOf({
+      item: PropTypes.shape({
+        date: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
+      }),
+    }).isRequired,
+  }),
+}
 
 export default MonthTable

@@ -43,16 +43,19 @@ body {
 
 #app {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 
 #app > div {
-  width: 15.625rem;
+  width: 25%;
+  min-width: 15.625rem;
   margin: 0.625rem;
 }
 
 table {
+  min-width: 80%;
+  margin: 0 auto;
   border-collapse: collapse;
 }
 

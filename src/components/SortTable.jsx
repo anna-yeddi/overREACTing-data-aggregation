@@ -6,23 +6,37 @@ function SortTable(props) {
 
   return (
     <div>
-      <h2>Sort Table</h2>
       <table>
-        <tr>
-          <th>Date</th>
-          <th>Amount</th>
-        </tr>
-        {props.list.map((item) => (
+        <caption>
+          <h2>Sort Table</h2>
+        </caption>
+        <thead>
           <tr>
-            <td>{item.date}</td>
-            <td>{item.amount}</td>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {props.list.map((item, i) => (
+            <tr key={i}>
+              <td>{item.date}</td>
+              <td>{item.amount}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   )
 }
-
-SortTable.propTypes = {}
+SortTable.propTypes = {
+  props: PropTypes.objectOf({
+    list: PropTypes.arrayOf({
+      item: PropTypes.shape({
+        month: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
+      }),
+    }).isRequired,
+  }),
+}
 
 export default SortTable
