@@ -3,11 +3,8 @@ import './App.css'
 import MonthTable from './components/MonthTable'
 import YearTable from './components/YearTable'
 import SortTable from './components/SortTable'
+import withData from './components/withData'
 
-// TODO:
-// 1. Загрузите данные с помощью fetch: https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json
-// 2. Не забудьте вынести URL в переменные окружения (не хардкодьте их здесь)
-// 3. Положите их в state
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -21,6 +18,9 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    // Show loader
+    this.setState({ isLoading: true })
+
     // Get data from API
     fetch(process.env.REACT_APP_DATA_URL)
       .then((response) => response.json())
@@ -35,11 +35,11 @@ export default class App extends React.Component {
           })
         }
       )
-      .then(console.log(this.state))
   }
 
   render() {
     const { list, error, isLoading } = this.state
+    const WithDataYear = withData(YearTable, 'year')
 
     if (error) {
       return (
@@ -57,7 +57,8 @@ export default class App extends React.Component {
       return (
         <div id="app">
           <MonthTable list={list} />
-          <YearTable list={list} />
+          <WithDataYear list={list} />
+          {/* <YearTable list={list} /> */}
           <SortTable list={list} />
         </div>
       )
