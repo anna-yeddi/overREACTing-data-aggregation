@@ -3,7 +3,7 @@ import './App.css'
 import MonthTable from './components/MonthTable'
 import YearTable from './components/YearTable'
 import SortTable from './components/SortTable'
-import withData from './components/withData'
+import withUpdatedList from './components/withUpdatedList'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,7 +39,9 @@ export default class App extends React.Component {
 
   render() {
     const { list, error, isLoading } = this.state
-    const WithDataYear = withData(YearTable, 'year')
+    const WithDataYearTable = withUpdatedList(YearTable, 'year')
+    const WithDataMonthTable = withUpdatedList(MonthTable, 'month')
+    const WithDataSortTable = withUpdatedList(SortTable, 'date')
 
     if (error) {
       return (
@@ -56,10 +58,12 @@ export default class App extends React.Component {
     } else {
       return (
         <div id="app">
-          <MonthTable list={list} />
-          <WithDataYear list={list} />
+          <WithDataMonthTable list={list} />
+          {/* <MonthTable list={list} /> */}
+          <WithDataYearTable list={list} />
           {/* <YearTable list={list} /> */}
-          <SortTable list={list} />
+          <WithDataSortTable list={list} />
+          {/* <SortTable list={list} /> */}
         </div>
       )
     }

@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function SortTable(props) {
-  console.log('SortTable', props)
-
   return (
     <div>
       <table>

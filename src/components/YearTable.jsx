@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withData from './withData'
+// import withData from './withData'
+// import withUpdatedList from './withUpdatedList'
 
 function YearTable(props) {
-  console.log('YearTable', props)
-
   return (
     <div>
       <table>
@@ -20,7 +19,6 @@ function YearTable(props) {
         <tbody>
           {props.list.map((item, i) => (
             <tr key={i}>
-              {/* <td>{item.date}</td> */}
               <td>{item.year}</td>
               <td>{item.amount}</td>
             </tr>
@@ -42,4 +40,4 @@ YearTable.propTypes = {
   }),
 }
 
-export default withData(YearTable)
+export default YearTable

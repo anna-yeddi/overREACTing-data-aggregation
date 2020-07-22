@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function MonthTable(props) {
-  console.log('MonthTable', props)
-
   return (
     <div>
       <table>
